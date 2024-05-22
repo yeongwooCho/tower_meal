@@ -4,6 +4,7 @@ import 'package:hidable/hidable.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
+import 'package:tower_meal/product/component/horizontal_item_list.dart';
 import 'package:tower_meal/product/provider/product_provider.dart';
 
 import '../../common/component/default_button.dart';
@@ -14,7 +15,6 @@ import '../../common/const/text_styles.dart';
 import '../../common/utils/data_utils.dart';
 import '../component/purchase_modal_bottom_sheet.dart';
 import '../component/rating_container.dart';
-import '../component/vertical_item_grid.dart';
 import '../model/product_model.dart';
 
 class ProductDetailScreen extends ConsumerStatefulWidget {
@@ -144,12 +144,27 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
             Padding(
               padding:
                   const EdgeInsets.only(left: 24.0, right: 24.0, top: 40.0),
-              child: Text(
-                '연관 상품 추천',
-                style: MyTextStyle.bigTitleMedium,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    '인기 상품',
+                    style: MyTextStyle.bigTitleMedium,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      '더보기',
+                      style: MyTextStyle.descriptionRegular.copyWith(
+                        color: MyColor.darkGrey,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            VerticalItemList(products: productPrefer)
+            HorizontalItemList(products: productPrefer),
+            const SizedBox(height: 40.0),
           ],
         ),
       ),

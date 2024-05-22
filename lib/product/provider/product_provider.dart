@@ -16,7 +16,7 @@ final productPreferProvider = Provider<List<ProductModel>>((ref) {
   final products = ref.watch(productProvider);
 
   final pairProducts = DataUtils.getRandomShuffledList<ProductModel>(products);
-  return pairProducts.take(2).toList();
+  return pairProducts.take(4).toList();
 });
 
 final productDetailProvider = Provider.family<ProductModel, int>((ref, id) {
@@ -50,14 +50,14 @@ class ProductStateNotifier extends StateNotifier<List<ProductModel>> {
 
   List<ProductModel> getItems() {
     final products = {
-      '치즈 왕관 팝콘': 4300,
-      '꿀맛 크림 와퍼 샌드': 2700,
-      "컬러풀 데일리 매크롱 세트": 3400,
-      "골든 칩 크리스피 딜라이트": 1480,
-      "컬러풀 캔디 트로피칼 믹스": 2300,
-      "피트니스 고섬유 바": 5300,
-      "초코칩 아이스크림 쿠키": 3400,
-      "블랙 화이트 크림 샌드위치": 2200,
+      '프레쉬 샐러드 보울': 9300,
+      '야외 핫팟 피에스타': 8700,
+      "프레쉬 야채 플래터": 13400,
+      "헬시 믹스 샐러드": 11480,
+      "비타민 가득 샐러드": 9300,
+      "그릴드 치킨 닭가슴살 샐러드": 7300,
+      "신선한 샐러드 보울": 8400,
+      "허브 비프 스튜": 10200,
     };
 
     return List.generate(
