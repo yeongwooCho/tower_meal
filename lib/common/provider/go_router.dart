@@ -6,6 +6,7 @@ import 'package:tower_meal/common/view/root_tab.dart';
 import 'package:tower_meal/common/view/splash_screen.dart';
 import 'package:tower_meal/home/view/home_screen.dart';
 import 'package:tower_meal/mall/view/mall_screen.dart';
+import 'package:tower_meal/product/view/product_detail_screen.dart';
 import 'package:tower_meal/product/view/product_screen.dart';
 import 'package:tower_meal/user/view/certification_screen.dart';
 import 'package:tower_meal/user/view/custom_sns_screen.dart';
@@ -139,6 +140,19 @@ List<RouteBase> get routes => [
             path: '/product',
             name: ProductScreen.routeName,
             builder: (context, state) => ProductScreen(),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: ':id',
+                name: ProductDetailScreen.routeName,
+                builder: (context, state) {
+                  final productId =
+                  GoRouterState.of(context).pathParameters['id'];
+
+                  return ProductDetailScreen(id: int.parse(productId!));
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: '/profile',
