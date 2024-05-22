@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tower_meal/common/component/default_button.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
 
@@ -13,14 +14,22 @@ class MallScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       appbar: const DefaultAppBar(title: '도매 mall'),
-      child: Column(
-        children: [
-          const SizedBox(height: 60.0),
-          const Text(
-            '새로운 비밀번호를\n입력해 주세요.',
-            style: MyTextStyle.headTitle,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 60.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              '현재 도매몰은\n서비스 준비중입니다.',
+              style: MyTextStyle.headTitle,
+            ),
+            PrimaryButton(
+              onPressed: () {},
+              child: const Text('브랜딩 홈으로 이동'),
+            ),
+          ],
+        ),
       ),
     );
   }
