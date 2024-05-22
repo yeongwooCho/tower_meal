@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../common/const/colors.dart';
 import '../../common/const/data.dart';
@@ -14,7 +15,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      appbar: const DefaultAppBar(title: 'All One Food'),
+      appbar: DefaultAppBar(
+        title: 'Tower Meal',
+        centerTitle: false,
+        backgroundColor: MyColor.primary,
+        foregroundColor: MyColor.white,
+        action: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              onPressed: () {},
+              icon: PhosphorIcon(
+                PhosphorIcons.shoppingCart(),
+                size: 28.0,
+              ),
+            ),
+          ),
+        ],
+      ),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(

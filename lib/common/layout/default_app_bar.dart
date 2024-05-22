@@ -11,6 +11,8 @@ class DefaultAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Widget? leading;
   final double? elevation;
   final bool centerTitle;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
 
   const DefaultAppBar({
     super.key,
@@ -20,6 +22,8 @@ class DefaultAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.action,
     this.elevation,
     this.centerTitle = true,
+    this.backgroundColor,
+    this.foregroundColor,
   });
 
   @override
@@ -37,7 +41,8 @@ class _DefaultAppBarState extends State<DefaultAppBar> {
       title: (widget.titleWidget == null)
           ? Text(
               widget.title,
-              style: MyTextStyle.bodyBold,
+              style:
+                  MyTextStyle.bodyBold.copyWith(color: widget.foregroundColor),
             )
           : widget.titleWidget,
       leading: widget.leading,
@@ -46,8 +51,8 @@ class _DefaultAppBarState extends State<DefaultAppBar> {
       actions: widget.action,
       elevation: widget.elevation ?? 0.0,
       scrolledUnderElevation: 0.0,
-      backgroundColor: MyColor.white,
-      foregroundColor: MyColor.text,
+      backgroundColor: widget.backgroundColor ?? MyColor.white,
+      foregroundColor: widget.foregroundColor ?? MyColor.text,
     );
   }
 }
