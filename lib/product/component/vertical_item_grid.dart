@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:tower_meal/common/const/colors.dart';
+import 'package:tower_meal/product/provider/product_provider.dart';
 
 import '../../common/const/text_styles.dart';
 import '../../common/utils/data_utils.dart';
 import '../model/product_model.dart';
 import '../view/product_detail_screen.dart';
 
-class VerticalItemList extends StatelessWidget {
+class VerticalItemList extends ConsumerWidget {
   final List<ProductModel> products;
 
   const VerticalItemList({
@@ -15,7 +19,7 @@ class VerticalItemList extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const double itemSpacing = 16.0;
     const double horizontalPadding = 24.0;
     final double itemWidth = (MediaQuery.of(context).size.width -
@@ -47,30 +51,64 @@ class VerticalItemList extends StatelessWidget {
               pathParameters: {'id': product.id.toString()},
             );
           },
-          child: SizedBox(
-            width: itemWidth,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Image.asset(
-                  product.mainImageUrl,
-                  fit: BoxFit.cover,
-                  height: itemWidth,
+          child: Stack(
+            alignment: Alignment.topRight,
+            children: [
+              SizedBox(
+                width: itemWidth,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Image.asset(
+                      product.mainImageUrl,
+                      fit: BoxFit.cover,
+                      height: itemWidth,
+                    ),
+                    const SizedBox(height: 4.0),
+                    Text(
+                      product.name,
+                      style: MyTextStyle.descriptionRegular,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4.0),
+                    Text(
+                      '${DataUtils.convertPriceToMoneyString(price: product.price)} 원',
+                      style: MyTextStyle.bodyBold,
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4.0),
-                Text(
-                  product.name,
-                  style: MyTextStyle.descriptionRegular,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+              ),
+              InkWell(
+                onTap: () {
+                  ref.read(productProvider.notifier).updateLike(
+                        productId: product.id,
+                        isLike: !product.isLike,
+                      );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      color: MyColor.white,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: product.isLike
+                          ? PhosphorIcon(
+                              PhosphorIcons.heart(PhosphorIconsStyle.fill),
+                              color: MyColor.heart,
+                            )
+                          : PhosphorIcon(
+                              PhosphorIcons.heart(),
+                              color: MyColor.darkGrey,
+                            ),
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 4.0),
-                Text(
-                  '${DataUtils.convertPriceToMoneyString(price: product.price)} 원',
-                  style: MyTextStyle.bodyBold,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
