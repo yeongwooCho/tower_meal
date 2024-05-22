@@ -108,9 +108,9 @@ class DeliveryListView extends StatelessWidget {
         itemBuilder: (context, OrderModel element) {
           return InkWell(
             onTap: () {
-              // context.pushNamed(OrderDetailScreen.routeName, pathParameters: {
-              //   'id': element.id,
-              // });
+              context.pushNamed(OrderDetailScreen.routeName, pathParameters: {
+                'id': element.id,
+              });
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
