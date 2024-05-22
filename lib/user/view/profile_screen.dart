@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:tower_meal/common/component/divider_container.dart';
 
 import '../../common/component/default_button.dart';
 import '../../common/component/show/show_component_modal_bottom_sheet.dart';
@@ -38,6 +39,7 @@ class ProfileScreen extends ConsumerWidget {
                 context: context,
                 user: user,
               ),
+            DividerContainer(topHeight: 20.0),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40.0),
@@ -45,7 +47,7 @@ class ProfileScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Text(
-                    'All One Food',
+                    '컨설팅 진행상태',
                     style: MyTextStyle.bodyTitleMedium,
                   ),
                   const SizedBox(height: 8.0),
@@ -97,13 +99,7 @@ class ProfileScreen extends ConsumerWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: Container(
-                height: 10.0,
-                color: MyColor.lightGrey,
-              ),
-            ),
+            DividerContainer(bottomHeight: 20.0),
             renderIconAndTextButton(
               icon: PhosphorIcon(
                 PhosphorIcons.shoppingBagOpen(),
@@ -113,6 +109,14 @@ class ProfileScreen extends ConsumerWidget {
               onTap: () {
                 // context.pushNamed(OrderListScreen.routeName);
               },
+            ),
+            renderIconAndTextButton(
+              icon: PhosphorIcon(
+                PhosphorIcons.question(),
+                size: 28.0,
+              ),
+              title: '고객센터',
+              onTap: () {},
             ),
             renderIconAndTextButton(
               icon: PhosphorIcon(
