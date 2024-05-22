@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+import '../../cart/model/cart_model.dart';
 import '../../common/const/colors.dart';
 import '../../common/const/text_styles.dart';
 import '../../common/utils/data_utils.dart';
-import '../model/cart_model.dart';
 
 class ProductAndAmountCard extends ConsumerWidget {
   final CartModel cart;

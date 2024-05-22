@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:tower_meal/product/view/product_screen.dart';
 
 import '../../common/component/default_button.dart';
 import '../../common/component/divider_container.dart';
@@ -14,7 +13,9 @@ import '../../common/const/text_styles.dart';
 import '../../common/layout/default_app_bar.dart';
 import '../../common/layout/default_layout.dart';
 import '../../common/utils/data_utils.dart';
-import '../component/product_and_amount_card.dart';
+import '../../order/view/create_order_screen.dart';
+import '../../product/component/product_and_amount_card.dart';
+import '../../product/view/product_screen.dart';
 import '../provider/cart_provider.dart';
 
 class CartScreen extends ConsumerStatefulWidget {
@@ -49,7 +50,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                         // ref
                         //     .read(orderProvider.notifier)
                         //     .addProductsFromCarts(carts: carts);
-                        // context.goNamed(CreateOrderScreen.routeName);
+                        context.goNamed(CreateOrderScreen.routeName);
                       },
                       child: Text(
                         '${DataUtils.convertPriceToMoneyString(

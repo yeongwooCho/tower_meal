@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/utils/data_utils.dart';
+import '../../product/model/product_model.dart';
 import '../model/cart_model.dart';
-import '../model/product_model.dart';
 
 final selectedCartProvider = Provider<List<CartModel>>((ref) {
   final carts = ref.watch(cartProvider);

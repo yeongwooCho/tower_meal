@@ -1,4 +1,5 @@
-import 'package:tower_meal/product/model/product_model.dart';
+
+import '../../product/model/product_model.dart';
 
 class CartModel {
   final String id;
