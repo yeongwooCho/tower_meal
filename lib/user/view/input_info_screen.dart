@@ -96,6 +96,16 @@ class _InputInfoScreenState extends ConsumerState<InputInfoScreen> {
               ),
               const SizedBox(height: 20.0),
               CustomTextFormField(
+                hintText: '이메일',
+                onChanged: (String value) {},
+                onSaved: (String? newValue) {},
+                validator: (String? value) {
+                  return null;
+                },
+                textInputType: TextInputType.emailAddress,
+              ),
+              const SizedBox(height: 20.0),
+              CustomTextFormField(
                 hintText: '비밀번호(영문, 숫자, 특수문자 합 8~15자)',
                 obscureText: true,
                 onChanged: (String value) {},
