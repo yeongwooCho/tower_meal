@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tower_meal/common/const/image_path.dart';
 
 import '../model/address_model.dart';
 import '../model/user_model.dart';
@@ -20,7 +21,7 @@ class UserStateNotifier extends StateNotifier<UserModelBase> {
       password: 'zxcv',
       name: '홍석표',
       phone: '01012341234',
-      profileImage: 'asset/img/logo/logo.png',
+      profileImage: ImagePath.user,
       address: AddressModel(
         id: 1,
         name: '홍석표',

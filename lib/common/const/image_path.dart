@@ -1,6 +1,7 @@
 class ImagePath {
   /// img
-  static const logo = "asset/img/logo/logo.png";
+  static const logoWhite = "asset/img/logo/logo_white.png";
+  static const logoBlack = "asset/img/logo/logo_black.png";
 
   /// social_login button
   static const appleIcon = "asset/img/social_login/button/apple.png";

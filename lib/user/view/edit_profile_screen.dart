@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tower_meal/common/const/image_path.dart';
 
 import '../../common/component/custom_text_form_field.dart';
 import '../../common/component/default_button.dart';
@@ -64,7 +65,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Image.asset(
-                      'asset/img/user/user.png',
+                      ImagePath.user,
                       width: 120.0,
                       height: 120.0,
                     ),

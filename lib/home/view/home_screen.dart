@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:tower_meal/common/const/image_path.dart';
 
 import '../../common/const/colors.dart';
 import '../../common/const/data.dart';
@@ -16,7 +17,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       appbar: DefaultAppBar(
-        title: 'Tower Meal',
+        title: '',
+        titleWidget: Padding(
+          padding: const EdgeInsets.only(left: 0.0),
+          child: Image.asset(ImagePath.logoWhite, width: 100.0,),
+        ),
         centerTitle: false,
         backgroundColor: MyColor.primary,
         foregroundColor: MyColor.white,

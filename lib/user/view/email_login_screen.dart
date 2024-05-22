@@ -41,7 +41,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             children: [
               const SizedBox(height: 60.0),
               Image.asset(
-                ImagePath.logo,
+                ImagePath.logoBlack,
                 width: MediaQuery.of(context).size.width * 3 / 7,
                 height: MediaQuery.of(context).size.width * 3 / 7,
               ),

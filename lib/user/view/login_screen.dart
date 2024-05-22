@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              ImagePath.logo,
+              ImagePath.logoBlack,
               width: MediaQuery.of(context).size.width * 3 / 7,
             ),
             const SizedBox(height: 60.0),
