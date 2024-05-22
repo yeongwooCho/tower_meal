@@ -159,23 +159,31 @@ class _PurchaseModalBottomSheetState
               ],
             ),
             const SizedBox(height: 40.0),
-            PrimaryButton(
-              onPressed: () {
-                // ref.read(cartProvider.notifier).addProduct(
-                //       product: widget.product,
-                //       amount: count,
-                //     );
+            Row(
+              children: [
+                Expanded(
+                  child: SecondaryButton(
+                    onPressed: () {
+                      // ref.read(cartProvider.notifier).addProduct(
+                      //       product: widget.product,
+                      //       amount: count,
+                      //     );
 
-                context.pop();
+                      context.pop();
 
-                showCustomToast(context, msg: '장바구니에 상품을 담았습니다.');
-              },
-              child: Text('${DataUtils.convertPriceToMoneyString(
-                price: (widget.product.price *
-                        (100 - widget.product.sale) ~/
-                        100) *
-                    count,
-              )}원 장바구니 담기'),
+                      showCustomToast(context, msg: '장바구니에 상품을 담았습니다.');
+                    },
+                    child: Text('장바구니 담기'),
+                  ),
+                ),
+                const SizedBox(width: 8.0),
+                Expanded(
+                  child: PrimaryButton(
+                    onPressed: () {},
+                    child: Text('바로 구매하기'),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -10,7 +10,7 @@ class MyButtonStyle {
     disabledForegroundColor: MyColor.darkGrey,
     disabledBackgroundColor: MyColor.lightGrey,
     elevation: 0,
-    padding: const EdgeInsets.symmetric(vertical: 16.0),
+    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
     minimumSize: const Size(60, 48),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8.0),
