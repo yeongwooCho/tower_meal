@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
               ImagePath.logoBlack,
               width: MediaQuery.of(context).size.width * 3 / 7,
             ),
-            const SizedBox(height: 60.0),
+            const SizedBox(height: 120.0),
             _renderKakaoButton(onPressed: () {
               context.goNamed(
                 CustomSnsScreen.routeName,
