@@ -92,6 +92,14 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   validator: (String? value) {
                     return null;
                   },
+                  enabled: false,
+                ),
+                const SizedBox(height: 4.0),
+                Text(
+                  '아이디는 변경할 수 없습니다.',
+                  style: MyTextStyle.minimumRegular.copyWith(
+                    color: MyColor.darkGrey,
+                  ),
                 ),
                 const SizedBox(height: 8.0),
                 CustomTextFormField(
@@ -132,30 +140,17 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   },
                   textInputType: TextInputType.number,
                 ),
-                const SizedBox(height: 40.0),
-                const Padding(
-                  padding: EdgeInsets.only(left: 4.0),
-                  child: Text(
-                    '사업자 정보',
-                    style: MyTextStyle.bodyTitleMedium,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 40.0,
                   ),
                   child: PrimaryButton(
                     onPressed: () {
-                      // ref.read(userProvider.notifier).updateInfo(
-                      //       name: _nameController.text,
-                      //       phone: _phoneController.text,
-                      //     );
-                      //
-                      // ref.read(userProvider.notifier).updateKeywords(
-                      //   newKeywords: [...selectedDropdownItems],
-                      // );
-                      //
+                      ref.read(userProvider.notifier).updateInfo(
+                            name: _nameController.text,
+                            phone: _phoneController.text,
+                          );
+
                       showCustomToast(context, msg: '저장이 완료되었습니다.');
                       context.pop();
                     },

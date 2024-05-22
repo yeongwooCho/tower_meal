@@ -10,6 +10,7 @@ import 'package:tower_meal/product/view/product_detail_screen.dart';
 import 'package:tower_meal/product/view/product_screen.dart';
 import 'package:tower_meal/user/view/certification_screen.dart';
 import 'package:tower_meal/user/view/custom_sns_screen.dart';
+import 'package:tower_meal/user/view/edit_profile_screen.dart';
 import 'package:tower_meal/user/view/email_login_screen.dart';
 import 'package:tower_meal/user/view/find_id_screen.dart';
 import 'package:tower_meal/user/view/find_password_input_screen.dart';
@@ -158,6 +159,14 @@ List<RouteBase> get routes => [
             path: '/profile',
             name: ProfileScreen.routeName,
             builder: (context, state) => ProfileScreen(),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                path: 'edit',
+                name: EditProfileScreen.routeName,
+                builder: (context, state) => EditProfileScreen(),
+              ),
+            ]
           ),
         ],
       ),
