@@ -5,6 +5,8 @@ import 'package:tower_meal/common/view/completion_screen_to_email_login.dart';
 import 'package:tower_meal/common/view/root_tab.dart';
 import 'package:tower_meal/common/view/splash_screen.dart';
 import 'package:tower_meal/home/view/home_screen.dart';
+import 'package:tower_meal/mall/view/mall_screen.dart';
+import 'package:tower_meal/product/view/product_screen.dart';
 import 'package:tower_meal/user/view/certification_screen.dart';
 import 'package:tower_meal/user/view/custom_sns_screen.dart';
 import 'package:tower_meal/user/view/email_login_screen.dart';
@@ -129,14 +131,18 @@ List<RouteBase> get routes => [
             builder: (context, state) => HomeScreen(),
           ),
           GoRoute(
+            path: '/mall',
+            name: MallScreen.routeName,
+            builder: (context, state) => MallScreen(),
+          ),
+          GoRoute(
+            path: '/product',
+            name: ProductScreen.routeName,
+            builder: (context, state) => ProductScreen(),
+          ),
+          GoRoute(
             path: '/profile',
             name: ProfileScreen.routeName,
-            builder: (context, state) => ProfileScreen(),
-          ),
-
-          GoRoute(
-            path: '/profile2',
-            name: ProfileScreen.routeName + '2',
             builder: (context, state) => ProfileScreen(),
           ),
         ],

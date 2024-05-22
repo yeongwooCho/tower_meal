@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:tower_meal/mall/view/mall_screen.dart';
+import 'package:tower_meal/user/view/profile_screen.dart';
 
 import '../../home/view/home_screen.dart';
+import '../../product/view/product_screen.dart';
 import '../const/colors.dart';
 import '../const/text_styles.dart';
 import '../layout/default_layout.dart';
@@ -20,7 +23,7 @@ class RootTab extends StatelessWidget {
     switch (GoRouterState.of(context).location) {
       case '/home':
         return 0;
-      case '/all_one_food':
+      case '/mall':
         return 1;
       case '/product':
         return 2;
@@ -49,11 +52,11 @@ class RootTab extends StatelessWidget {
             case 0:
               context.goNamed(HomeScreen.routeName);
             case 1:
-              context.goNamed(HomeScreen.routeName);
+              context.goNamed(MallScreen.routeName);
             case 2:
-              context.goNamed(HomeScreen.routeName);
+              context.goNamed(ProductScreen.routeName);
             case 3:
-              context.goNamed(HomeScreen.routeName);
+              context.goNamed(ProfileScreen.routeName);
             default:
               context.goNamed(ErrorScreen.routeName);
           }
