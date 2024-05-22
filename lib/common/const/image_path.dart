@@ -17,4 +17,8 @@ class ImagePath {
 
   /// user
   static const user = "asset/img/user/user.png";
+
+  /// banner
+  static const banner = "asset/img/banner/banner.png";
+  static const bannerBand = "asset/img/banner/banner_band.png";
 }

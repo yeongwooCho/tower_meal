@@ -71,14 +71,14 @@ class RootTab extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: PhosphorIcon(
-              PhosphorIcons.users(),
+              PhosphorIcons.storefront(),
               size: 30.0,
             ),
-            label: 'All One Food',
+            label: '도매몰',
           ),
           BottomNavigationBarItem(
             icon: PhosphorIcon(
-              PhosphorIcons.gift(),
+              PhosphorIcons.shoppingBagOpen(),
               size: 30.0,
             ),
             label: '상품',
