@@ -27,6 +27,8 @@ class CreateOrderScreen extends ConsumerStatefulWidget {
 
 class _OrderScreenState extends ConsumerState<CreateOrderScreen> {
   bool isLoading = false;
+  int productPrice = 0;
+  int totalPrice = 0;
 
   String cardName = ''; // 카드사 이름
 
@@ -36,13 +38,20 @@ class _OrderScreenState extends ConsumerState<CreateOrderScreen> {
     final user = ref.watch(userProvider) as UserModel;
 
     // price
-    final productPrice = carts
-        .map((e) => e.product.price * e.amount)
-        .reduce((value, element) => value + element);
-    final totalPrice = carts
-        .map((e) => (e.product.price * (1 - e.product.sale / 100)) * e.amount)
-        .reduce((value, element) => value + element)
-        .toInt();
+    if (carts.isNotEmpty) {
+      productPrice = carts
+          .map((e) => e.product.price * e.amount)
+          .reduce((value, element) => value + element);
+
+      totalPrice = carts
+          .map((e) => (e.product.price * (1 - e.product.sale / 100)) * e.amount)
+          .reduce((value, element) => value + element)
+          .toInt();
+    } else {
+      productPrice = 0;
+      totalPrice = 0;
+    }
+
     // final discountPrice = carts
     //     .map((e) => (e.product.price * e.product.sale / 100) * e.amount)
     //     .reduce((value, element) => value + element).toInt();
