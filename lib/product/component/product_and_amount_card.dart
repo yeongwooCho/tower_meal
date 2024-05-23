@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../cart/model/cart_model.dart';
+import '../../cart/provider/cart_provider.dart';
 import '../../common/const/colors.dart';
 import '../../common/const/text_styles.dart';
 import '../../common/utils/data_utils.dart';
@@ -88,12 +89,12 @@ class ProductAndAmountCard extends ConsumerWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      // if (cart.amount > 1) {
-                      //   ref.read(cartProvider.notifier).updateAmount(
-                      //         cartId: cart.id,
-                      //         amount: cart.amount - 1,
-                      //       );
-                      // }
+                      if (cart.amount > 1) {
+                        ref.read(cartProvider.notifier).updateAmount(
+                              cartId: cart.id,
+                              amount: cart.amount - 1,
+                            );
+                      }
                     },
                     icon: Container(
                       decoration: BoxDecoration(
@@ -119,10 +120,10 @@ class ProductAndAmountCard extends ConsumerWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      // ref.read(cartProvider.notifier).updateAmount(
-                      //       cartId: cart.id,
-                      //       amount: cart.amount + 1,
-                      //     );
+                      ref.read(cartProvider.notifier).updateAmount(
+                            cartId: cart.id,
+                            amount: cart.amount + 1,
+                          );
                     },
                     icon: Container(
                       decoration: BoxDecoration(

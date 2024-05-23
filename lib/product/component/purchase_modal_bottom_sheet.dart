@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:tower_meal/order/view/create_order_screen.dart';
 
+import '../../cart/provider/cart_provider.dart';
 import '../../common/component/default_button.dart';
 import '../../common/component/show/show_custom_toast.dart';
 import '../../common/const/colors.dart';
@@ -165,23 +165,23 @@ class _PurchaseModalBottomSheetState
                 Expanded(
                   child: SecondaryButton(
                     onPressed: () {
-                      // ref.read(cartProvider.notifier).addProduct(
-                      //       product: widget.product,
-                      //       amount: count,
-                      //     );
+                      ref.read(cartProvider.notifier).addProduct(
+                            product: widget.product,
+                            amount: count,
+                          );
 
                       context.pop();
 
                       showCustomToast(context, msg: '장바구니에 상품을 담았습니다.');
                     },
-                    child: Text('장바구니 담기'),
+                    child: const Text('장바구니 담기'),
                   ),
                 ),
                 const SizedBox(width: 8.0),
                 Expanded(
                   child: PrimaryButton(
                     onPressed: () {},
-                    child: Text('바로 구매하기'),
+                    child: const Text('바로 구매하기'),
                   ),
                 ),
               ],
