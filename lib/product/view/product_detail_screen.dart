@@ -1,5 +1,7 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hidable/hidable.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
@@ -7,6 +9,8 @@ import 'package:tower_meal/common/layout/default_layout.dart';
 import 'package:tower_meal/product/component/horizontal_item_list.dart';
 import 'package:tower_meal/product/provider/product_provider.dart';
 
+import '../../cart/provider/cart_provider.dart';
+import '../../cart/view/cart_screen.dart';
 import '../../common/component/default_button.dart';
 import '../../common/component/divider_container.dart';
 import '../../common/component/show/show_component_modal_bottom_sheet.dart';
@@ -44,7 +48,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
     final fullWidth = MediaQuery.of(context).size.width;
     final safeTopPadding = MediaQuery.of(context).padding.top;
 
-    // final carts = ref.watch(cartProvider);
+    final carts = ref.watch(cartProvider);
 
     return DefaultLayout(
       appbar: Hidable(
@@ -58,11 +62,21 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
               padding: const EdgeInsets.only(right: 8.0),
               child: IconButton(
                 onPressed: () {
-                  // context.pushNamed(CartScreen.routeName);
+                  context.pushNamed(CartScreen.routeName);
                 },
-                icon: PhosphorIcon(
-                  PhosphorIcons.shoppingCart(),
-                  size: 28.0,
+                icon: badges.Badge(
+                  showBadge: carts.isNotEmpty,
+                  badgeContent: Text(
+                    carts.length.toString(),
+                    style: MyTextStyle.minimumRegular.copyWith(
+                      color: MyColor.white,
+                      height: 1.0,
+                    ),
+                  ),
+                  child: PhosphorIcon(
+                    PhosphorIcons.shoppingCart(),
+                    size: 28.0,
+                  ),
                 ),
               ),
             ),
