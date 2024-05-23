@@ -1,12 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tower_meal/common/component/default_button.dart';
 import 'package:tower_meal/common/const/image_path.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
-
-import '../../../common/const/text_styles.dart';
-
+import 'package:tower_meal/second/consulting/view/input_concept_screen.dart';
 
 class SecondConsultingScreen extends StatelessWidget {
   static String get routeName => "second_consulting";
@@ -25,7 +24,9 @@ class SecondConsultingScreen extends StatelessWidget {
           children: [
             Image.asset(ImagePath.serviceImage),
             PrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(InputConceptScreen.routeName);
+              },
               child: const Text('컨설팅 시작하기'),
             ),
           ],

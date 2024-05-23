@@ -13,6 +13,7 @@ import 'package:tower_meal/order/view/order_list_screen.dart';
 import 'package:tower_meal/product/view/product_detail_screen.dart';
 import 'package:tower_meal/product/view/product_screen.dart';
 import 'package:tower_meal/second/common/second_root_tab.dart';
+import 'package:tower_meal/second/consulting/view/input_concept_screen.dart';
 import 'package:tower_meal/second/consulting/view/second_consulting_screen.dart';
 import 'package:tower_meal/second/home/view/second_home_screen.dart';
 import 'package:tower_meal/second/mall/view/second_mall_screen.dart';
@@ -194,7 +195,14 @@ List<RouteBase> get routes => [
             path: '/second_consulting',
             name: SecondConsultingScreen.routeName,
             builder: (context, state) => SecondConsultingScreen(),
-          ),
+              routes: [
+                GoRoute(
+                  parentNavigatorKey: _rootNavigatorKey,
+                  path: 'input_concept',
+                  name: InputConceptScreen.routeName,
+                  builder: (context, state) => InputConceptScreen(),
+                ),
+              ]),
           GoRoute(
             path: '/second_mall',
             name: SecondMallScreen.routeName,
