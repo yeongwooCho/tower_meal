@@ -12,6 +12,10 @@ import 'package:tower_meal/order/view/order_detail_screen.dart';
 import 'package:tower_meal/order/view/order_list_screen.dart';
 import 'package:tower_meal/product/view/product_detail_screen.dart';
 import 'package:tower_meal/product/view/product_screen.dart';
+import 'package:tower_meal/second/common/second_root_tab.dart';
+import 'package:tower_meal/second/consulting/view/second_consulting_screen.dart';
+import 'package:tower_meal/second/home/view/second_home_screen.dart';
+import 'package:tower_meal/second/mall/view/second_mall_screen.dart';
 import 'package:tower_meal/user/view/certification_screen.dart';
 import 'package:tower_meal/user/view/custom_sns_screen.dart';
 import 'package:tower_meal/user/view/edit_profile_screen.dart';
@@ -29,6 +33,7 @@ import '../view/error_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
+final _secondShellNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
@@ -171,6 +176,29 @@ List<RouteBase> get routes => [
                 builder: (context, state) => EditProfileScreen(),
               ),
             ]
+          ),
+        ],
+      ),
+      ShellRoute(
+        navigatorKey: _secondShellNavigatorKey,
+        builder: (context, state, child) {
+          return SecondRootTab(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/second_home',
+            name: SecondHomeScreen.routeName,
+            builder: (context, state) => SecondHomeScreen(),
+          ),
+          GoRoute(
+            path: '/second_consulting',
+            name: SecondConsultingScreen.routeName,
+            builder: (context, state) => SecondConsultingScreen(),
+          ),
+          GoRoute(
+            path: '/second_mall',
+            name: SecondMallScreen.routeName,
+            builder: (context, state) => SecondMallScreen(),
           ),
         ],
       ),

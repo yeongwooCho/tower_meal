@@ -51,6 +51,7 @@ dependencies:
   multi_dropdown: ^2.1.4
   loading_animation_widget: ^1.2.1
   grouped_list: ^5.1.2
+  animated_toggle_switch: ^0.8.2
 
 
   # Statement Manager
