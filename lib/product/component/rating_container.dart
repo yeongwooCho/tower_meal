@@ -30,7 +30,7 @@ class RatingContainer extends ConsumerWidget {
               ),
               IconButton(
                 onPressed: () {
-                  // ref.read(isSelectedRating.notifier).state = !isSelected;
+                  ref.read(isSelectedRating.notifier).state = !isSelected;
                 },
                 icon: isSelected
                     ? PhosphorIcon(
