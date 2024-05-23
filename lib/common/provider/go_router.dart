@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tower_meal/cart/view/cart_screen.dart';
 import 'package:tower_meal/common/view/completion_screen.dart';
 import 'package:tower_meal/common/view/completion_screen_to_email_login.dart';
 import 'package:tower_meal/common/view/root_tab.dart';
 import 'package:tower_meal/common/view/splash_screen.dart';
 import 'package:tower_meal/home/view/home_screen.dart';
 import 'package:tower_meal/mall/view/mall_screen.dart';
+import 'package:tower_meal/order/view/create_order_screen.dart';
+import 'package:tower_meal/order/view/order_detail_screen.dart';
+import 'package:tower_meal/order/view/order_list_screen.dart';
 import 'package:tower_meal/product/view/product_detail_screen.dart';
 import 'package:tower_meal/product/view/product_screen.dart';
 import 'package:tower_meal/user/view/certification_screen.dart';
@@ -47,9 +51,9 @@ List<RouteBase> get routes => [
         path: '/completion/:title',
         name: CompletionScreen.routeName,
         builder: (context, state) {
-          final parameters = GoRouterState.of(context).pathParameters;
+          final String title = state.pathParameters['title']!;
 
-          return CompletionScreen(title: parameters['title']!);
+          return CompletionScreen(title: title);
         },
       ),
       GoRoute(
@@ -167,6 +171,35 @@ List<RouteBase> get routes => [
                 builder: (context, state) => EditProfileScreen(),
               ),
             ]
+          ),
+        ],
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/cart',
+        name: CartScreen.routeName,
+        builder: (context, state) => CartScreen(),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/create_order',
+        name: CreateOrderScreen.routeName,
+        builder: (context, state) => CreateOrderScreen(),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/order_list',
+        name: OrderListScreen.routeName,
+        builder: (context, state) => OrderListScreen(),
+        routes: [
+          GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: ':id',
+            name: OrderDetailScreen.routeName,
+            builder: (context, state) {
+              String id = state.pathParameters['id']!;
+              return OrderDetailScreen(id: id);
+            },
           ),
         ],
       ),
