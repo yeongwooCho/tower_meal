@@ -50,7 +50,7 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                         // ref
                         //     .read(orderProvider.notifier)
                         //     .addProductsFromCarts(carts: carts);
-                        context.goNamed(CreateOrderScreen.routeName);
+                        context.pushNamed(CreateOrderScreen.routeName);
                       },
                       child: Text(
                         '${DataUtils.convertPriceToMoneyString(

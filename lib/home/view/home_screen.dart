@@ -1,6 +1,10 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:tower_meal/cart/provider/cart_provider.dart';
+import 'package:tower_meal/cart/view/cart_screen.dart';
 import 'package:tower_meal/common/component/custom_drop_down_single.dart';
 import 'package:tower_meal/common/const/image_path.dart';
 import 'package:tower_meal/product/component/horizontal_item_list.dart';
@@ -20,6 +24,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final products = ref.watch(productRandomProvider);
+    final carts = ref.watch(cartProvider);
 
     return DefaultLayout(
       appbar: DefaultAppBar(
@@ -35,10 +40,22 @@ class HomeScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-              onPressed: () {},
-              icon: PhosphorIcon(
-                PhosphorIcons.shoppingCart(),
-                size: 28.0,
+              onPressed: () {
+                context.pushNamed(CartScreen.routeName);
+              },
+              icon: badges.Badge(
+                showBadge: carts.isNotEmpty,
+                badgeContent: Text(
+                  carts.length.toString(),
+                  style: MyTextStyle.minimumRegular.copyWith(
+                    color: MyColor.white,
+                    height: 1.0,
+                  ),
+                ),
+                child: PhosphorIcon(
+                  PhosphorIcons.shoppingCart(),
+                  size: 28.0,
+                ),
               ),
             ),
           ),
