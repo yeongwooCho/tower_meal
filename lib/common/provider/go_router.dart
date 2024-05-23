@@ -14,6 +14,7 @@ import 'package:tower_meal/product/view/product_detail_screen.dart';
 import 'package:tower_meal/product/view/product_screen.dart';
 import 'package:tower_meal/second/common/second_root_tab.dart';
 import 'package:tower_meal/second/consulting/view/input_concept_screen.dart';
+import 'package:tower_meal/second/consulting/view/result_concept_screen.dart';
 import 'package:tower_meal/second/consulting/view/second_consulting_screen.dart';
 import 'package:tower_meal/second/home/view/second_home_screen.dart';
 import 'package:tower_meal/second/mall/view/second_mall_screen.dart';
@@ -201,6 +202,15 @@ List<RouteBase> get routes => [
                   path: 'input_concept',
                   name: InputConceptScreen.routeName,
                   builder: (context, state) => InputConceptScreen(),
+                  routes: [
+                    // 내부 router 일 경우 parentNavigator 지정 안 하면 input 으로 감
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      path: 'result_concept',
+                      name: ResultConceptScreen.routeName,
+                      builder: (context, state) => ResultConceptScreen(),
+                    ),
+                  ]
                 ),
               ]),
           GoRoute(

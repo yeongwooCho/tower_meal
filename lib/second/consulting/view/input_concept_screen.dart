@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tower_meal/common/component/custom_drop_down_single.dart';
 import 'package:tower_meal/common/component/custom_ink_well_button.dart';
 import 'package:tower_meal/common/component/default_button.dart';
@@ -9,6 +10,7 @@ import 'package:tower_meal/common/const/text_styles.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
 import 'package:tower_meal/product/provider/category_provider.dart';
+import 'package:tower_meal/second/consulting/view/result_concept_screen.dart';
 
 class InputConceptScreen extends ConsumerStatefulWidget {
   static String get routeName => "input_concept";
@@ -225,7 +227,9 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
               ),
               const SizedBox(height: 40.0),
               PrimaryButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.goNamed(ResultConceptScreen.routeName);
+                },
                 child: const Text('결과보기'),
               ),
             ],
