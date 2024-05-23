@@ -40,27 +40,6 @@ class OrderStateNotifier extends StateNotifier<List<OrderModel>> {
     state = getOrders();
   }
 
-  // void orderFromCarts({
-  //   required List<CartModel> carts,
-  //   required String orderName,
-  //   required String orderPhone,
-  //   required DeliveryModel delivery,
-  //   required PaymentModel payment,
-  // }) {
-  //   state = [
-  //     ...state,
-  //     OrderModel(
-  //       id: DataUtils.getUuid(),
-  //       createdAt: DateTime.now(),
-  //       name: orderName,
-  //       phone: orderPhone,
-  //       carts: carts,
-  //       delivery: delivery,
-  //       payment: payment,
-  //     ),
-  //   ];
-  // }
-
   void orderFromCarts({
     required List<CartModel> carts,
     required UserModel user,
@@ -74,6 +53,7 @@ class OrderStateNotifier extends StateNotifier<List<OrderModel>> {
       recipientAddress: user.address.address + user.address.detailAddress,
       recipientMemo: user.address.memo,
     );
+
     final payment = PaymentModel(
         id: DataUtils.getUuid(),
         cardName: cardName,
@@ -98,21 +78,22 @@ class OrderStateNotifier extends StateNotifier<List<OrderModel>> {
 
   List<OrderModel> getOrders() {
     int amount = 10;
+
     return [
       ...products.map((e) {
         DateTime createdAt = DateTime(
           2024,
-          Random().nextInt(DateTime.now().month) + 1,
-          Random().nextInt(DateTime.now().day) + 1,
-          Random().nextInt(DateTime.now().hour) + 1,
-          Random().nextInt(DateTime.now().minute) + 1,
+          Random().nextInt(DateTime.now().month + 1),
+          Random().nextInt(DateTime.now().day + 1),
+          Random().nextInt(DateTime.now().hour + 1),
+          Random().nextInt(DateTime.now().minute + 1),
         );
 
         return OrderModel(
           id: DataUtils.getUuid(),
           createdAt: createdAt,
-          name: '홍석표',
-          phone: '010-1234-1234',
+          name: user.name,
+          phone: user.phone,
           status: OrderStatus.done,
           carts: [
             CartModel(
