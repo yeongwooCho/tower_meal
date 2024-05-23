@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../product/model/rating_model.dart';
 
+final rootTabVersionProvider = StateProvider<int>((ref) => 0);
+
 final isAutoLoginProvider = StateProvider<bool>((ref) => true);
 
 final isSelectedRating = StateProvider<bool>((ref) => true);
