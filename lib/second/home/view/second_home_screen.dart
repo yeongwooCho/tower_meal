@@ -74,7 +74,7 @@ class SecondHomeScreen extends ConsumerWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 40.0, horizontal: 24.0),
-              child: Image.asset('asset/img/logo/service.png'),
+              child: Image.asset(ImagePath.serviceImage),
             ),
             _Footer(),
           ],
