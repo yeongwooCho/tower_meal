@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:tower_meal/common/component/custom_text_form_field.dart';
 import 'package:tower_meal/common/component/default_button.dart';
@@ -6,21 +7,35 @@ import 'package:tower_meal/common/const/colors.dart';
 import 'package:tower_meal/common/const/text_styles.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
+import 'package:tower_meal/kakao_address/compoenet/showKakaoAddress.dart';
+import 'package:tower_meal/kakao_address/model/kakao_address_model.dart';
+import 'package:tower_meal/kakao_address/provider/kakao_address_provider.dart';
 
 import '../../../common/component/custom_ink_well_button.dart';
 
-class OnlineConsultingScreen extends StatefulWidget {
+class OnlineConsultingScreen extends ConsumerStatefulWidget {
   static String get routeName => 'online_consulting';
 
   const OnlineConsultingScreen({super.key});
 
   @override
-  State<OnlineConsultingScreen> createState() => _OnlineConsultingScreenState();
+  ConsumerState<OnlineConsultingScreen> createState() =>
+      _OnlineConsultingScreenState();
 }
 
-class _OnlineConsultingScreenState extends State<OnlineConsultingScreen> {
+class _OnlineConsultingScreenState
+    extends ConsumerState<OnlineConsultingScreen> {
   String? targetLocation; // 타겟 지역(온라인, 오프라인)
   String? circulation; // 유통(온라인, 오프라인)
+
+  //address
+  // String postCode = '';
+  // String address = '주소 찾기';
+  // String roadAddress = '';
+  // String jibunAddress = '';
+  // String region = '';
+  // double latitude = 0.0;
+  // double longitude = 0.0;
 
   final List<String> preferredSupplier = [
     '대형 할인마트',
@@ -35,6 +50,8 @@ class _OnlineConsultingScreenState extends State<OnlineConsultingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final kakaoAddress = ref.watch(kakaoAddressProvider);
+
     return DefaultLayout(
       appbar: const DefaultAppBar(title: '컨셉/브랜드 기획'),
       child: SingleChildScrollView(
@@ -79,28 +96,41 @@ class _OnlineConsultingScreenState extends State<OnlineConsultingScreen> {
                 ],
               ),
               const SizedBox(height: 8.0),
-              Container(
-                decoration: BoxDecoration(
+              InkWell(
+                onTap: () {
+                  onTapKakaoAddress(
+                    context: context,
+                    ref: ref,
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
                     border: Border.all(
                       width: 1.0,
                       color: MyColor.middleGrey,
                     ),
-                    borderRadius: BorderRadius.circular(12.0),
-                    color: MyColor.empty),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '주소 찾기',
-                        style: MyTextStyle.bodyRegular.copyWith(
-                          color: MyColor.darkGrey,
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: MyColor.empty,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          (kakaoAddress is KakaoAddressModel)
+                              ? kakaoAddress.address
+                              : '주소 검색',
+                          style: MyTextStyle.bodyRegular.copyWith(
+                            color: (kakaoAddress is KakaoAddressModel)
+                                ? MyColor.text
+                                : MyColor.darkGrey,
+                          ),
                         ),
-                      ),
-                      PhosphorIcon(PhosphorIcons.caretRight())
-                    ],
+                        PhosphorIcon(PhosphorIcons.caretRight())
+                      ],
+                    ),
                   ),
                 ),
               ),
