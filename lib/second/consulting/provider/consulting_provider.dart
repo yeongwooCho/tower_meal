@@ -13,7 +13,7 @@ class ConsultingStateNotifier extends StateNotifier<ConsultingModel> {
   ConsultingStateNotifier()
       : super(ConsultingModel(
           id: '',
-          status: ConsultingStatus.doneManufacture,
+          status: ConsultingStatus.no,
         ));
 
   void updateConcept({

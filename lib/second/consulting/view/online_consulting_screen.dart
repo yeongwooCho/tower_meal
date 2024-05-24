@@ -27,8 +27,8 @@ class OnlineConsultingScreen extends ConsumerStatefulWidget {
 
 class _OnlineConsultingScreenState
     extends ConsumerState<OnlineConsultingScreen> {
-  String? targetLocation; // 타겟 지역(온라인, 오프라인)
-  String? circulation; // 유통(온라인, 오프라인)
+  String targetLocation = ''; // 타겟 지역(온라인, 오프라인)
+  String circulation = ''; // 유통(온라인, 오프라인)
   int estimatedManufacturingCost = 0;
   int estimatedManufacturingPeriod = 0;
 
@@ -90,23 +90,24 @@ class _OnlineConsultingScreenState
                   ),
                 ],
               ),
-              const SizedBox(height: 8.0),
-              InkWell(
-                onTap: () {
-                  onTapKakaoAddress(
-                    context: context,
-                    ref: ref,
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1.0,
-                      color: MyColor.middleGrey,
+              if (targetLocation == '오프라인') const SizedBox(height: 8.0),
+              if (targetLocation == '오프라인')
+                InkWell(
+                  onTap: () {
+                    onTapKakaoAddress(
+                      context: context,
+                      ref: ref,
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1.0,
+                        color: MyColor.middleGrey,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: MyColor.empty,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: MyColor.empty,
-                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 16.0),
@@ -129,26 +130,28 @@ class _OnlineConsultingScreenState
                   ),
                 ),
               ),
-              const SizedBox(height: 40.0),
-              const Text(
-                '유통',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomInkWellButton(
-                      title: '온라인',
-                      onTap: () {
-                        setState(() {
-                          circulation = '온라인';
-                        });
-                      },
-                      isSelected: circulation != null && circulation == '온라인',
+              if (targetLocation.isNotEmpty) const SizedBox(height: 40.0),
+              if (targetLocation.isNotEmpty)
+                const Text(
+                  '유통',
+                  style: MyTextStyle.bodyTitleMedium,
+                ),
+              if (targetLocation.isNotEmpty) const SizedBox(height: 8.0),
+              if (targetLocation.isNotEmpty)
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomInkWellButton(
+                        title: '온라인',
+                        onTap: () {
+                          setState(() {
+                            circulation = '온라인';
+                          });
+                        },
+                        isSelected: circulation != null && circulation == '온라인',
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8.0),
+                    const SizedBox(width: 8.0),
                   Expanded(
                     child: CustomInkWellButton(
                       title: '오프라인',
@@ -162,23 +165,25 @@ class _OnlineConsultingScreenState
                   ),
                 ],
               ),
-              const SizedBox(height: 40.0),
-              const Text(
-                '희망 납품업체',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              Wrap(
-                spacing: 8.0,
-                runSpacing: 8.0,
-                children: preferredSupplier
-                    .map((e) => CustomInkWellButton(
-                          title: e,
-                          onTap: () {
-                            if (selectedSupplier == e) {
-                              selectedSupplier = '';
-                            } else {
-                              selectedSupplier = e;
+              if (circulation.isNotEmpty) const SizedBox(height: 40.0),
+              if (circulation.isNotEmpty)
+                const Text(
+                  '희망 납품업체',
+                  style: MyTextStyle.bodyTitleMedium,
+                ),
+              if (circulation.isNotEmpty) const SizedBox(height: 8.0),
+              if (circulation.isNotEmpty)
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: preferredSupplier
+                      .map((e) => CustomInkWellButton(
+                            title: e,
+                            onTap: () {
+                              if (selectedSupplier == e) {
+                                selectedSupplier = '';
+                              } else {
+                                selectedSupplier = e;
                             }
                             setState(() {});
                           },
@@ -186,55 +191,68 @@ class _OnlineConsultingScreenState
                         ))
                     .toList(),
               ),
-              const SizedBox(height: 40.0),
-              const Text(
-                '예상 제조 단가',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              CustomTextFormField(
-                suffixText: '원',
-                textInputType: TextInputType.number,
-                onChanged: (String value) {
-                  try {
-                    estimatedManufacturingCost = int.parse(value);
-                  } catch (e) {
-                    estimatedManufacturingCost = 0;
-                  }
-                },
-                onSaved: (String? newValue) {},
-                validator: (String? value) {
-                  return null;
-                },
-              ),
-              const SizedBox(height: 40.0),
-              const Text(
-                '예상 제조 기간',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              CustomTextFormField(
-                suffixText: '일',
-                textInputType: TextInputType.number,
-                onChanged: (String value) {
-                  try {
-                    estimatedManufacturingCost = int.parse(value);
-                  } catch (e) {
-                    estimatedManufacturingCost = 0;
-                  }
-                },
-                onSaved: (String? newValue) {},
-                validator: (String? value) {
-                  return null;
+              if (selectedSupplier.isNotEmpty) const SizedBox(height: 40.0),
+              if (selectedSupplier.isNotEmpty)
+                const Text(
+                  '예상 제조 단가',
+                  style: MyTextStyle.bodyTitleMedium,
+                ),
+              if (selectedSupplier.isNotEmpty) const SizedBox(height: 8.0),
+              if (selectedSupplier.isNotEmpty)
+                CustomTextFormField(
+                  suffixText: '원',
+                  textInputType: TextInputType.number,
+                  onChanged: (String value) {
+                    try {
+                      estimatedManufacturingCost = int.parse(value);
+                    } catch (e) {
+                      estimatedManufacturingCost = 0;
+                    } finally {
+                      setState(() {});
+                    }
+                  },
+                  onSaved: (String? newValue) {},
+                  validator: (String? value) {
+                    return null;
                 },
               ),
-              const SizedBox(height: 40.0),
-              PrimaryButton(
-                onPressed: () {
-                  context.goNamed(ResultCirculationScreen.routeName);
-                },
-                child: const Text('결과보기'),
-              ),
+              if (selectedSupplier.isNotEmpty) const SizedBox(height: 40.0),
+              if (selectedSupplier.isNotEmpty)
+                const Text(
+                  '예상 제조 기간',
+                  style: MyTextStyle.bodyTitleMedium,
+                ),
+              if (selectedSupplier.isNotEmpty) const SizedBox(height: 8.0),
+              if (selectedSupplier.isNotEmpty)
+                CustomTextFormField(
+                  suffixText: '일',
+                  textInputType: TextInputType.number,
+                  onChanged: (String value) {
+                    try {
+                      estimatedManufacturingPeriod = int.parse(value);
+                    } catch (e) {
+                      estimatedManufacturingPeriod = 0;
+                    } finally {
+                      setState(() {});
+                    }
+                  },
+                  onSaved: (String? newValue) {},
+                  validator: (String? value) {
+                    return null;
+                  },
+                ),
+              if (selectedSupplier.isNotEmpty) const SizedBox(height: 40.0),
+              if (targetLocation.isNotEmpty &&
+                  circulation.isNotEmpty &&
+                  preferredSupplier.isNotEmpty &&
+                  estimatedManufacturingCost != 0 &&
+                  estimatedManufacturingPeriod != 0)
+                PrimaryButton(
+                  onPressed: () {
+                    context.goNamed(ResultCirculationScreen.routeName);
+                  },
+                  child: const Text('결과보기'),
+                ),
             ],
           ),
         ),
