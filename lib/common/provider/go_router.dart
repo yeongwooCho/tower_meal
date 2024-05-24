@@ -15,6 +15,7 @@ import 'package:tower_meal/product/view/product_screen.dart';
 import 'package:tower_meal/second/common/second_root_tab.dart';
 import 'package:tower_meal/second/consulting/view/input_concept_screen.dart';
 import 'package:tower_meal/second/consulting/view/offline_consulting_screen.dart';
+import 'package:tower_meal/second/consulting/view/online_consulting_screen.dart';
 import 'package:tower_meal/second/consulting/view/result_concept_screen.dart';
 import 'package:tower_meal/second/consulting/view/second_consulting_screen.dart';
 import 'package:tower_meal/second/home/view/second_home_screen.dart';
@@ -217,6 +218,13 @@ List<RouteBase> get routes => [
                             name: OfflineConsultingScreen.routeName,
                             builder: (context, state) =>
                                 OfflineConsultingScreen(),
+                          ),
+                          GoRoute(
+                            parentNavigatorKey: _rootNavigatorKey,
+                            path: 'online_consulting',
+                            name: OnlineConsultingScreen.routeName,
+                            builder: (context, state) =>
+                                OnlineConsultingScreen(),
                           ),
                         ],
                       ),

@@ -9,6 +9,7 @@ import 'package:tower_meal/common/const/text_styles.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
 import 'package:tower_meal/second/consulting/view/offline_consulting_screen.dart';
+import 'package:tower_meal/second/consulting/view/online_consulting_screen.dart';
 
 class ResultConceptScreen extends ConsumerWidget {
   static String get routeName => "result_concept";
@@ -122,7 +123,9 @@ class ResultConceptScreen extends ConsumerWidget {
                   const SizedBox(width: 8.0),
                   Expanded(
                     child: PrimaryButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.goNamed(OnlineConsultingScreen.routeName);
+                      },
                       child: const Text('온라인 컨설팅'),
                     ),
                   ),
