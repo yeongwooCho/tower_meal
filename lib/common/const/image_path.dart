@@ -6,6 +6,9 @@ class ImagePath {
 
   /// concept
   static const concept = "asset/img/concept/concept.png";
+  static const circulation = "asset/img/concept/circulation.png";
+  static const manufacturing = "asset/img/concept/manufacturing.png";
+  static const map = "asset/img/concept/map.png";
 
   /// social_login button
   static const appleIcon = "asset/img/social_login/button/apple.png";
