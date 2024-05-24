@@ -89,6 +89,7 @@ flutter:
     - asset/img/user/
     - asset/img/social_login/button/
     - asset/img/social_login/screen/
+    - asset/img/concept/
     - asset/img/category/
     - asset/img/banner/
     - asset/img/payment/
@@ -101,6 +102,7 @@ flutter:
     - asset/img/product/5/
     - asset/img/product/6/
     - asset/img/product/7/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

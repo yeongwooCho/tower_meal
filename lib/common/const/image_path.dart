@@ -4,6 +4,9 @@ class ImagePath {
   static const logoBlack = "asset/img/logo/logo_black.png";
   static const serviceImage = "asset/img/logo/service.png";
 
+  /// concept
+  static const concept = "asset/img/concept/concept.png";
+
   /// social_login button
   static const appleIcon = "asset/img/social_login/button/apple.png";
   static const googleIcon = "asset/img/social_login/button/google.png";
