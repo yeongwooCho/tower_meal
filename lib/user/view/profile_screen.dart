@@ -3,17 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:tower_meal/common/component/divider_container.dart';
-import 'package:tower_meal/second/consulting/provider/consulting_provider.dart';
+import 'package:tower_meal/order/view/order_list_screen.dart';
 
-import '../../common/component/default_button.dart';
-import '../../common/component/show/show_component_modal_bottom_sheet.dart';
 import '../../common/component/show/show_cupertino_alert.dart';
 import '../../common/const/colors.dart';
 import '../../common/const/image_path.dart';
 import '../../common/const/text_styles.dart';
 import '../../common/layout/default_app_bar.dart';
 import '../../common/layout/default_layout.dart';
-import '../../common/utils/data_utils.dart';
 import '../../second/consulting/component/consulting_state_container.dart';
 import '../model/user_model.dart';
 import '../provider/user_provider.dart';
@@ -51,7 +48,7 @@ class ProfileScreen extends ConsumerWidget {
               ),
               title: '주문내역',
               onTap: () {
-                // context.pushNamed(OrderListScreen.routeName);
+                context.pushNamed(OrderListScreen.routeName);
               },
             ),
             renderIconAndTextButton(

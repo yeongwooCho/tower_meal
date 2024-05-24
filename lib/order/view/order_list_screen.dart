@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:tower_meal/common/const/colors.dart';
 
 import '../../common/component/divider_container.dart';
 import '../../common/const/text_styles.dart';
@@ -32,17 +33,27 @@ class OrderListScreen extends ConsumerWidget {
       appbar: const DefaultAppBar(title: '배송 현황'),
       child: Column(
         children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 24.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                renderDeliveryAmount(count: orders.length, title: '전체'),
-                renderDeliveryAmount(count: readyOrders.length, title: '준비중'),
-                renderDeliveryAmount(count: doingOrders.length, title: '배송중'),
-                renderDeliveryAmount(count: doneOrders.length, title: '배송완료'),
-              ],
+          Container(
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: MyColor.middleGrey,
+                ),
+              ),
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  renderDeliveryAmount(count: orders.length, title: '전체'),
+                  renderDeliveryAmount(count: readyOrders.length, title: '준비중'),
+                  renderDeliveryAmount(count: doingOrders.length, title: '배송중'),
+                  renderDeliveryAmount(count: doneOrders.length, title: '배송완료'),
+                ],
+              ),
             ),
           ),
           DeliveryListView(orders: orders),
@@ -133,6 +144,7 @@ class DeliveryListView extends StatelessWidget {
           item2.createdAt,
         ),
         order: GroupedListOrder.DESC,
+        separator: Text('asdf'),
       ),
     );
   }
