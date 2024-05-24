@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:tower_meal/common/component/custom_text_form_field.dart';
 import 'package:tower_meal/common/component/default_button.dart';
@@ -10,6 +11,7 @@ import 'package:tower_meal/common/layout/default_layout.dart';
 import 'package:tower_meal/kakao_address/compoenet/showKakaoAddress.dart';
 import 'package:tower_meal/kakao_address/model/kakao_address_model.dart';
 import 'package:tower_meal/kakao_address/provider/kakao_address_provider.dart';
+import 'package:tower_meal/second/consulting/view/result_circulation_screen.dart';
 
 import '../../../common/component/custom_ink_well_button.dart';
 
@@ -27,15 +29,6 @@ class _OnlineConsultingScreenState
     extends ConsumerState<OnlineConsultingScreen> {
   String? targetLocation; // 타겟 지역(온라인, 오프라인)
   String? circulation; // 유통(온라인, 오프라인)
-
-  //address
-  // String postCode = '';
-  // String address = '주소 찾기';
-  // String roadAddress = '';
-  // String jibunAddress = '';
-  // String region = '';
-  // double latitude = 0.0;
-  // double longitude = 0.0;
 
   final List<String> preferredSupplier = [
     '대형 할인마트',
@@ -223,7 +216,9 @@ class _OnlineConsultingScreenState
               ),
               const SizedBox(height: 40.0),
               PrimaryButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.goNamed(ResultCirculationScreen.routeName);
+                },
                 child: const Text('결과보기'),
               ),
             ],
