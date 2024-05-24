@@ -53,6 +53,9 @@ dependencies:
   grouped_list: ^5.1.2
   animated_toggle_switch: ^0.8.2
 
+  # Address, Map
+  kpostal:
+
 
   # Statement Manager
   go_router: ^7.0.1
