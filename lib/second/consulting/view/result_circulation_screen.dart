@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:tower_meal/common/component/default_button.dart';
 import 'package:tower_meal/common/const/colors.dart';
@@ -8,6 +9,7 @@ import 'package:tower_meal/common/const/image_path.dart';
 import 'package:tower_meal/common/const/text_styles.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
+import 'package:tower_meal/second/consulting/view/create_order_consulting_screen.dart';
 
 class ResultCirculationScreen extends StatelessWidget {
   static String get routeName => 'result_circulation';
@@ -107,7 +109,9 @@ class ResultCirculationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40.0),
               PrimaryButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.goNamed(CreateOrderConsultingScreen.routeName);
+                },
                 child: const Text('전문 컨설턴트에게 상담받고 싶어요!'),
               ),
             ],
