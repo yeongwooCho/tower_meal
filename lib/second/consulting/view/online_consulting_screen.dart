@@ -29,6 +29,8 @@ class _OnlineConsultingScreenState
     extends ConsumerState<OnlineConsultingScreen> {
   String? targetLocation; // 타겟 지역(온라인, 오프라인)
   String? circulation; // 유통(온라인, 오프라인)
+  int estimatedManufacturingCost = 0;
+  int estimatedManufacturingPeriod = 0;
 
   final List<String> preferredSupplier = [
     '대형 할인마트',
@@ -193,7 +195,13 @@ class _OnlineConsultingScreenState
               CustomTextFormField(
                 suffixText: '원',
                 textInputType: TextInputType.number,
-                onChanged: (String value) {},
+                onChanged: (String value) {
+                  try {
+                    estimatedManufacturingCost = int.parse(value);
+                  } catch (e) {
+                    estimatedManufacturingCost = 0;
+                  }
+                },
                 onSaved: (String? newValue) {},
                 validator: (String? value) {
                   return null;
@@ -208,7 +216,13 @@ class _OnlineConsultingScreenState
               CustomTextFormField(
                 suffixText: '일',
                 textInputType: TextInputType.number,
-                onChanged: (String value) {},
+                onChanged: (String value) {
+                  try {
+                    estimatedManufacturingCost = int.parse(value);
+                  } catch (e) {
+                    estimatedManufacturingCost = 0;
+                  }
+                },
                 onSaved: (String? newValue) {},
                 validator: (String? value) {
                   return null;
