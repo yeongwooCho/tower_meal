@@ -95,11 +95,11 @@ class ConsultingStateContainer extends ConsumerWidget {
       case ConsultingStatus.doingConcept:
         context.goNamed(SecondConsultingScreen.routeName);
       case ConsultingStatus.doneConcept:
-        context.goNamed(ResultConceptScreen.routeName);
+        context.pushNamed(ResultConceptScreen.routeName);
       case ConsultingStatus.doingManufacture:
-        context.goNamed(OnlineConsultingScreen.routeName);
+        context.pushNamed(OnlineConsultingScreen.routeName);
       case ConsultingStatus.doneManufacture:
-        context.goNamed(ResultCirculationScreen.routeName);
+        context.pushNamed(ResultCirculationScreen.routeName);
       default: // no
         context.goNamed(SecondConsultingScreen.routeName);
     }
