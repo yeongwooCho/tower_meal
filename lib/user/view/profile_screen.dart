@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:tower_meal/common/component/divider_container.dart';
+import 'package:tower_meal/second/consulting/provider/consulting_provider.dart';
 
 import '../../common/component/default_button.dart';
 import '../../common/component/show/show_component_modal_bottom_sheet.dart';
@@ -13,6 +14,7 @@ import '../../common/const/text_styles.dart';
 import '../../common/layout/default_app_bar.dart';
 import '../../common/layout/default_layout.dart';
 import '../../common/utils/data_utils.dart';
+import '../../second/consulting/component/consulting_state_container.dart';
 import '../model/user_model.dart';
 import '../provider/user_provider.dart';
 import 'edit_profile_screen.dart';
@@ -40,65 +42,7 @@ class ProfileScreen extends ConsumerWidget {
                 user: user,
               ),
             DividerContainer(topHeight: 20.0),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Text(
-                    '컨설팅 진행상태',
-                    style: MyTextStyle.bodyTitleMedium,
-                  ),
-                  const SizedBox(height: 8.0),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1.0,
-                        color: MyColor.middleGrey,
-                      ),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16.0, horizontal: 12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Text(
-                              //   allOneFood.consultingType,
-                              //   style: MyTextStyle.bodyRegular,
-                              // ),
-                              const SizedBox(height: 4.0),
-                              Text(
-                                DataUtils.convertDateTimeToDateTimeString(
-                                    datetime: DateTime.now()),
-                                style: MyTextStyle.descriptionRegular,
-                              ),
-                            ],
-                          ),
-                          SecondaryButton(
-                            onPressed: () {
-                              showCustomModalBottomSheet(
-                                context: context,
-                                bottomSheetWidget: Container(
-                                  color: Colors.red,
-                                  height: 200.0,
-                                ),
-                              );
-                            },
-                            child: const Text('상세보기'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            ConsultingStateContainer(),
             DividerContainer(bottomHeight: 20.0),
             renderIconAndTextButton(
               icon: PhosphorIcon(
