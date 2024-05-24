@@ -80,35 +80,41 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                 dropdownHeight: 220.0,
               ),
               const SizedBox(height: 32.0),
-              const Text(
-                '타겟 나이',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              CustomSingleDropDown(
-                dropdownList: ['10대', '20대', '30대', '40대', '50대', '60대 이상'],
-                hintText: '나이',
-                onChanged: (String value) {
-                  setState(() {
-                    targetAge = value;
-                  });
-                },
-                dropdownHeight: 220.0,
-              ),
+              if (productInfo.isNotEmpty)
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    '타겟 나이',
+                    style: MyTextStyle.bodyTitleMedium,
+                  ),
+                ),
+              if (productInfo.isNotEmpty)
+                CustomSingleDropDown(
+                  dropdownList: ['10대', '20대', '30대', '40대', '50대', '60대 이상'],
+                  hintText: '나이',
+                  onChanged: (String value) {
+                    setState(() {
+                      targetAge = value;
+                    });
+                  },
+                  dropdownHeight: 220.0,
+                ),
               const SizedBox(height: 32.0),
-              const Text(
-                '성별',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomInkWellButton(
-                      title: '남자',
-                      onTap: () {
-                        setState(() {
-                          isGender = true;
+              if (targetAge.isNotEmpty)
+                const Text(
+                  '성별',
+                  style: MyTextStyle.bodyTitleMedium,
+                ),
+              if (targetAge.isNotEmpty) const SizedBox(height: 8.0),
+              if (targetAge.isNotEmpty)
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomInkWellButton(
+                        title: '남자',
+                        onTap: () {
+                          setState(() {
+                            isGender = true;
                         });
                       },
                       isSelected: isGender != null && isGender!,
@@ -129,17 +135,19 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                 ],
               ),
               const SizedBox(height: 32.0),
-              const Text(
-                '타겟 소득 수준',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomInkWellButton(
-                      title: '상',
-                      onTap: () {
+              if (isGender != null)
+                const Text(
+                  '타겟 소득 수준',
+                  style: MyTextStyle.bodyTitleMedium,
+                ),
+              if (isGender != null) const SizedBox(height: 8.0),
+              if (isGender != null)
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomInkWellButton(
+                        title: '상',
+                        onTap: () {
                         setState(() {
                           incomeLevel = '상';
                         });
@@ -174,15 +182,17 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                 ],
               ),
               const SizedBox(height: 32.0),
-              const Text(
-                '가치(최대 3개)',
-                style: MyTextStyle.bodyTitleMedium,
-              ),
-              const SizedBox(height: 8.0),
-              Wrap(
-                spacing: 8.0,
-                runSpacing: 8.0,
-                children: brandValues
+              if (incomeLevel != null)
+                const Text(
+                  '가치(최대 3개)',
+                  style: MyTextStyle.bodyTitleMedium,
+                ),
+              if (incomeLevel != null) const SizedBox(height: 8.0),
+              if (incomeLevel != null)
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: brandValues
                     .map((e) => CustomInkWellButton(
                           title: e,
                           onTap: () {
@@ -200,13 +210,15 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                     .toList(),
               ),
               const SizedBox(height: 32.0),
-              const Text(
-                '포지션(최대 3개)',
-                style: MyTextStyle.bodyTitleMedium,
+              if (selectedBrandValues.isNotEmpty)
+                const Text(
+                  '포지션(최대 3개)',
+                  style: MyTextStyle.bodyTitleMedium,
               ),
-              const SizedBox(height: 8.0),
-              Wrap(
-                spacing: 8.0,
+              if (selectedBrandValues.isNotEmpty) const SizedBox(height: 8.0),
+              if (selectedBrandValues.isNotEmpty)
+                Wrap(
+                  spacing: 8.0,
                 runSpacing: 8.0,
                 children: positions
                     .map((e) => CustomInkWellButton(
@@ -226,7 +238,13 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                     .toList(),
               ),
               const SizedBox(height: 40.0),
-              PrimaryButton(
+              if (productInfo.isNotEmpty &&
+                  targetAge.isNotEmpty &&
+                  isGender != null &&
+                  incomeLevel != null &&
+                  selectedBrandValues.isNotEmpty &&
+                  selectedPositions.isNotEmpty)
+                PrimaryButton(
                 onPressed: () {
                   context.goNamed(ResultConceptScreen.routeName);
                 },
