@@ -10,6 +10,8 @@ import 'package:tower_meal/common/const/text_styles.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
 import 'package:tower_meal/product/provider/category_provider.dart';
+import 'package:tower_meal/second/consulting/model/concept_model.dart';
+import 'package:tower_meal/second/consulting/provider/consulting_provider.dart';
 import 'package:tower_meal/second/consulting/view/result_concept_screen.dart';
 
 class InputConceptScreen extends ConsumerStatefulWidget {
@@ -25,8 +27,8 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
   String productInfo = '';
   String targetAge = '';
 
-  bool? isGender;
-  String? incomeLevel;
+  String gender = '';
+  String incomeLevel = '';
 
   final List<String> brandValues = [
     '신선한 재료',
@@ -114,34 +116,34 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                         title: '남자',
                         onTap: () {
                           setState(() {
-                            isGender = true;
-                        });
-                      },
-                      isSelected: isGender != null && isGender!,
+                            gender = '남자';
+                          });
+                        },
+                        isSelected: gender == '남자',
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8.0),
-                  Expanded(
+                    const SizedBox(width: 8.0),
+                    Expanded(
                     child: CustomInkWellButton(
                       title: '여자',
                       onTap: () {
                         setState(() {
-                          isGender = false;
-                        });
-                      },
-                      isSelected: isGender != null && !(isGender!),
+                            gender = '여자';
+                          });
+                        },
+                        isSelected: gender == '여자',
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
               const SizedBox(height: 32.0),
-              if (isGender != null)
+              if (gender.isNotEmpty)
                 const Text(
                   '타겟 소득 수준',
                   style: MyTextStyle.bodyTitleMedium,
                 ),
-              if (isGender != null) const SizedBox(height: 8.0),
-              if (isGender != null)
+              if (gender.isNotEmpty) const SizedBox(height: 8.0),
+              if (gender.isNotEmpty)
                 Row(
                   children: [
                     Expanded(
@@ -152,10 +154,10 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                           incomeLevel = '상';
                         });
                       },
-                      isSelected: incomeLevel != null && incomeLevel == '상',
+                        isSelected: incomeLevel == '상',
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8.0),
+                    const SizedBox(width: 8.0),
                   Expanded(
                     child: CustomInkWellButton(
                       title: '중',
@@ -164,10 +166,10 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                           incomeLevel = '중';
                         });
                       },
-                      isSelected: incomeLevel != null && incomeLevel == '중',
+                        isSelected: incomeLevel == '중',
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8.0),
+                    const SizedBox(width: 8.0),
                   Expanded(
                     child: CustomInkWellButton(
                       title: '하',
@@ -176,19 +178,19 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
                           incomeLevel = '하';
                         });
                       },
-                      isSelected: incomeLevel != null && incomeLevel == '하',
+                        isSelected: incomeLevel == '하',
+                      ),
                     ),
-                  ),
-                ],
+                  ],
               ),
               const SizedBox(height: 32.0),
-              if (incomeLevel != null)
+              if (incomeLevel.isNotEmpty)
                 const Text(
                   '가치(최대 3개)',
                   style: MyTextStyle.bodyTitleMedium,
                 ),
-              if (incomeLevel != null) const SizedBox(height: 8.0),
-              if (incomeLevel != null)
+              if (incomeLevel.isNotEmpty) const SizedBox(height: 8.0),
+              if (incomeLevel.isNotEmpty)
                 Wrap(
                   spacing: 8.0,
                   runSpacing: 8.0,
@@ -240,16 +242,26 @@ class _InputConceptScreenState extends ConsumerState<InputConceptScreen> {
               const SizedBox(height: 40.0),
               if (productInfo.isNotEmpty &&
                   targetAge.isNotEmpty &&
-                  isGender != null &&
-                  incomeLevel != null &&
+                  gender.isNotEmpty &&
+                  incomeLevel.isNotEmpty &&
                   selectedBrandValues.isNotEmpty &&
                   selectedPositions.isNotEmpty)
                 PrimaryButton(
                 onPressed: () {
-                  context.goNamed(ResultConceptScreen.routeName);
-                },
-                child: const Text('결과보기'),
-              ),
+                    ref.read(consultingProvider.notifier).updateConcept(
+                          concept: ConceptModel(
+                              productInfo: productInfo,
+                              targetAge: targetAge,
+                              gender: gender,
+                              incomeLevel: incomeLevel,
+                              brandValues: brandValues,
+                              positions: positions),
+                        );
+
+                    context.goNamed(ResultConceptScreen.routeName);
+                  },
+                  child: const Text('결과보기'),
+                ),
             ],
           ),
         ),
