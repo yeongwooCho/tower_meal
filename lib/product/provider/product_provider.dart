@@ -3,7 +3,14 @@ import 'package:tower_meal/common/utils/data_utils.dart';
 import 'package:tower_meal/product/model/product_model.dart';
 import 'package:tower_meal/product/provider/category_provider.dart';
 
+final productHomeRandomProvider = Provider<List<ProductModel>>((ref) {
+  final products = ref.watch(productProvider);
+  final taste = ref.watch(tasteSelectedProvider);
 
+  final randomProducts =
+  DataUtils.getRandomShuffledList<ProductModel>(products);
+  return randomProducts;
+});
 
 final productRandomProvider = Provider<List<ProductModel>>((ref) {
   final products = ref.watch(productProvider);

@@ -9,6 +9,7 @@ import 'package:tower_meal/cart/view/cart_screen.dart';
 import 'package:tower_meal/common/component/custom_drop_down_single.dart';
 import 'package:tower_meal/common/const/image_path.dart';
 import 'package:tower_meal/product/component/horizontal_item_list.dart';
+import 'package:tower_meal/product/provider/category_provider.dart';
 import 'package:tower_meal/product/provider/product_provider.dart';
 import 'package:tower_meal/second/home/view/second_home_screen.dart';
 
@@ -25,9 +26,11 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final products = ref.watch(productRandomProvider);
+    final products = ref.watch(productHomeRandomProvider);
     final productPrefer = ref.watch(productPreferProvider);
     final carts = ref.watch(cartProvider);
+
+    final tastes = ref.watch(tasteProvider);
 
     return DefaultLayout(
       appbar: DefaultAppBar(
@@ -115,11 +118,15 @@ class HomeScreen extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: SizedBox(
-                      width: 100.0,
+                      width: 110.0,
                       child: CustomSingleDropDown(
-                        dropdownList: ['단', '신', '짠', '쓴', '감칠', '매운'],
+                        dropdownList: tastes,
                         hintText: '어떤',
-                        onChanged: (String value) {},
+                        onChanged: (String value) {
+                          ref
+                              .read(tasteSelectedProvider.notifier)
+                              .update((state) => value);
+                        },
                         dropdownHeight: 290.0,
                       ),
                     ),
