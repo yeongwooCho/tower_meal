@@ -23,7 +23,7 @@ class ConsultingStateNotifier extends StateNotifier<ConsultingModel> {
       id: DataUtils.getUuid(),
       concept: concept,
       manufacturing: state.manufacturing,
-      status: state.status,
+      status: ConsultingStatus.doneConcept,
     );
   }
 
@@ -34,7 +34,7 @@ class ConsultingStateNotifier extends StateNotifier<ConsultingModel> {
       id: DataUtils.getUuid(),
       concept: state.concept,
       manufacturing: manufacturing,
-      status: state.status,
+      status: ConsultingStatus.doneManufacture,
     );
   }
 }

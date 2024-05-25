@@ -11,6 +11,8 @@ import 'package:tower_meal/common/layout/default_layout.dart';
 import 'package:tower_meal/kakao_address/compoenet/showKakaoAddress.dart';
 import 'package:tower_meal/kakao_address/model/kakao_address_model.dart';
 import 'package:tower_meal/kakao_address/provider/kakao_address_provider.dart';
+import 'package:tower_meal/second/consulting/model/manufacturing_model.dart';
+import 'package:tower_meal/second/consulting/provider/consulting_provider.dart';
 import 'package:tower_meal/second/consulting/view/result_circulation_screen.dart';
 
 import '../../../common/component/custom_ink_well_button.dart';
@@ -249,6 +251,18 @@ class _OnlineConsultingScreenState
                   estimatedManufacturingPeriod != 0)
                 PrimaryButton(
                   onPressed: () {
+                    ref.read(consultingProvider.notifier).updateManufacturing(
+                          manufacturing: ManufacturingModel(
+                            targetLocation: targetLocation,
+                            circulation: circulation,
+                            supplier: selectedSupplier,
+                            estimatedManufacturingCost:
+                                estimatedManufacturingCost,
+                            estimatedManufacturingPeriod:
+                                estimatedManufacturingPeriod,
+                          ),
+                        );
+
                     context.goNamed(ResultCirculationScreen.routeName);
                   },
                   child: const Text('결과보기'),
