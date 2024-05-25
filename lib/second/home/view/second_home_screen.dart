@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tower_meal/common/const/image_path.dart';
-import 'package:tower_meal/common/provider/global_provider.dart';
 import 'package:tower_meal/home/view/home_screen.dart';
 
 import '../../../common/const/colors.dart';
@@ -12,25 +11,21 @@ import '../../../common/const/text_styles.dart';
 import '../../../common/layout/default_app_bar.dart';
 import '../../../common/layout/default_layout.dart';
 
-class SecondHomeScreen extends ConsumerWidget {
+class SecondHomeScreen extends StatelessWidget {
   static String get routeName => "second_home";
 
   const SecondHomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final rootTabVersion = ref.watch(rootTabVersionProvider);
-
+  Widget build(BuildContext context) {
     return DefaultLayout(
       appbar: DefaultAppBar(
         title: '',
         titleWidget: AnimatedToggleSwitch<int>.rolling(
-          current: rootTabVersion,
+          current: 1,
           values: const [0, 1],
           height: 40.0,
           onChanged: (int value) {
-            ref.read(rootTabVersionProvider.notifier).update((state) => value);
-
             if (value == 0) {
               context.goNamed(HomeScreen.routeName);
             } else {

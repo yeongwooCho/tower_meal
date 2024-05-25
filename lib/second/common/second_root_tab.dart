@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:tower_meal/common/provider/global_provider.dart';
-import 'package:tower_meal/mall/view/mall_screen.dart';
 import 'package:tower_meal/second/consulting/view/second_consulting_screen.dart';
 import 'package:tower_meal/second/home/view/second_home_screen.dart';
 import 'package:tower_meal/second/mall/view/second_mall_screen.dart';
@@ -14,7 +11,7 @@ import '../../common/const/text_styles.dart';
 import '../../common/layout/default_layout.dart';
 import '../../common/view/error_screen.dart';
 
-class SecondRootTab extends ConsumerWidget {
+class SecondRootTab extends StatelessWidget {
   final Widget child;
 
   const SecondRootTab({
@@ -38,7 +35,7 @@ class SecondRootTab extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return DefaultLayout(
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0.0,
@@ -59,7 +56,6 @@ class SecondRootTab extends ConsumerWidget {
             case 2:
               context.goNamed(SecondMallScreen.routeName);
             case 3:
-              ref.read(rootTabVersionProvider.notifier).update((state) => 0);
               context.goNamed(ProfileScreen.routeName);
             default:
               context.goNamed(ErrorScreen.routeName);
@@ -85,7 +81,7 @@ class SecondRootTab extends ConsumerWidget {
               PhosphorIcons.storefront(),
               size: 30.0,
             ),
-            label: '도매몰',
+            label: 'Mall',
           ),
           BottomNavigationBarItem(
             icon: PhosphorIcon(

@@ -8,7 +8,6 @@ import 'package:tower_meal/cart/provider/cart_provider.dart';
 import 'package:tower_meal/cart/view/cart_screen.dart';
 import 'package:tower_meal/common/component/custom_drop_down_single.dart';
 import 'package:tower_meal/common/const/image_path.dart';
-import 'package:tower_meal/common/provider/global_provider.dart';
 import 'package:tower_meal/product/component/horizontal_item_list.dart';
 import 'package:tower_meal/product/provider/product_provider.dart';
 import 'package:tower_meal/second/home/view/second_home_screen.dart';
@@ -29,18 +28,15 @@ class HomeScreen extends ConsumerWidget {
     final products = ref.watch(productRandomProvider);
     final productPrefer = ref.watch(productPreferProvider);
     final carts = ref.watch(cartProvider);
-    final rootTabVersion = ref.watch(rootTabVersionProvider);
 
     return DefaultLayout(
       appbar: DefaultAppBar(
         title: '',
         titleWidget: AnimatedToggleSwitch<int>.rolling(
-          current: rootTabVersion,
+          current: 0,
           values: const [0, 1],
           height: 40.0,
           onChanged: (int value) {
-            ref.read(rootTabVersionProvider.notifier).update((state) => value);
-
             if (value == 0) {
               context.goNamed(HomeScreen.routeName);
             } else {

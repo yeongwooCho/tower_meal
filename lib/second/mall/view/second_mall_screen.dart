@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tower_meal/common/component/default_button.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
-import 'package:tower_meal/common/provider/global_provider.dart';
 import 'package:tower_meal/mall/view/mall_screen.dart';
 
 import '../../../common/const/text_styles.dart';
 
-class SecondMallScreen extends ConsumerWidget {
+class SecondMallScreen extends StatelessWidget {
   static String get routeName => "second_mall";
 
   const SecondMallScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return DefaultLayout(
       appbar: const DefaultAppBar(title: '도매몰'),
       child: Padding(
@@ -30,7 +28,6 @@ class SecondMallScreen extends ConsumerWidget {
             ),
             PrimaryButton(
               onPressed: () {
-                ref.read(rootTabVersionProvider.notifier).update((state) => 1);
                 context.goNamed(MallScreen.routeName);
               },
               child: const Text('브랜딩 홈으로 이동'),
