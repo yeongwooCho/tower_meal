@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:tower_meal/home/view/home_screen.dart';
 import 'package:tower_meal/second/consulting/view/second_consulting_screen.dart';
 import 'package:tower_meal/second/home/view/second_home_screen.dart';
 import 'package:tower_meal/second/mall/view/second_mall_screen.dart';
@@ -54,7 +55,8 @@ class SecondRootTab extends StatelessWidget {
             case 1:
               context.goNamed(SecondConsultingScreen.routeName);
             case 2:
-              context.goNamed(SecondMallScreen.routeName);
+              context.goNamed(HomeScreen.routeName);
+              // context.goNamed(SecondMallScreen.routeName);
             case 3:
               context.goNamed(ProfileScreen.routeName);
             default:

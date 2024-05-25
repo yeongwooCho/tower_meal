@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tower_meal/common/component/default_button.dart';
 import 'package:tower_meal/common/layout/default_app_bar.dart';
 import 'package:tower_meal/common/layout/default_layout.dart';
+import 'package:tower_meal/second/home/view/second_home_screen.dart';
 
 import '../../common/const/text_styles.dart';
 
@@ -25,7 +27,9 @@ class MallScreen extends StatelessWidget {
               style: MyTextStyle.headTitle,
             ),
             PrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                context.goNamed(SecondHomeScreen.routeName);
+              },
               child: const Text('브랜딩 홈으로 이동'),
             ),
           ],
