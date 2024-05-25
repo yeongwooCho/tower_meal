@@ -27,6 +27,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final products = ref.watch(productRandomProvider);
+    final productPrefer = ref.watch(productPreferProvider);
     final carts = ref.watch(cartProvider);
     final rootTabVersion = ref.watch(rootTabVersionProvider);
 
@@ -161,7 +162,7 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 8.0),
-            HorizontalItemList(products: products),
+            HorizontalItemList(products: productPrefer),
             const SizedBox(height: 40.0),
             _Footer(),
           ],

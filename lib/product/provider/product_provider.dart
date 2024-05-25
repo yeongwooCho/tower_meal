@@ -3,6 +3,8 @@ import 'package:tower_meal/common/utils/data_utils.dart';
 import 'package:tower_meal/product/model/product_model.dart';
 import 'package:tower_meal/product/provider/category_provider.dart';
 
+
+
 final productRandomProvider = Provider<List<ProductModel>>((ref) {
   final products = ref.watch(productProvider);
   final selectedCategory = ref.watch(categorySelectedProvider);
@@ -74,7 +76,7 @@ class ProductStateNotifier extends StateNotifier<List<ProductModel>> {
           'asset/img/product/$index/2.png',
           'asset/img/product/$index/3.png',
         ],
-        isLike: true,
+        isLike: false,
         categoryIds: [1, 2, 3],
       ),
     );
