@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:tower_meal/order/view/create_order_screen.dart';
 
 import '../../cart/provider/cart_provider.dart';
 import '../../common/component/default_button.dart';
@@ -180,7 +181,15 @@ class _PurchaseModalBottomSheetState
                 const SizedBox(width: 8.0),
                 Expanded(
                   child: PrimaryButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ref
+                          .read(cartProvider.notifier)
+                          .updateAllSelected(isSelected: false);
+                      ref
+                          .read(cartProvider.notifier)
+                          .addProduct(product: widget.product, amount: count);
+                      context.goNamed(CreateOrderScreen.routeName);
+                    },
                     child: const Text('바로 구매하기'),
                   ),
                 ),
