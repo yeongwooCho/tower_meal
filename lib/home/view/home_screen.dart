@@ -127,7 +127,7 @@ class HomeScreen extends ConsumerWidget {
                               .read(tasteSelectedProvider.notifier)
                               .update((state) => value);
                         },
-                        dropdownHeight: 290.0,
+                        dropdownHeight: 240.0,
                       ),
                     ),
                   ),

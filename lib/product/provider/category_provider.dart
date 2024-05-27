@@ -5,7 +5,7 @@ final tasteSelectedProvider = StateProvider<String>(
 );
 
 final tasteProvider = StateProvider<List<String>>(
-  (ref) => ['단', '신', '짠', '쓴', '감칠', '매운'],
+  (ref) => ['단', '신', '짠', '감칠', '매운'],
 );
 
 final categorySelectedProvider = StateProvider<String>(
