@@ -1,9 +1,10 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tower_meal/common/component/default_button.dart';
 import 'package:tower_meal/common/const/image_path.dart';
 import 'package:tower_meal/home/view/home_screen.dart';
+import 'package:tower_meal/second/consulting/view/second_consulting_screen.dart';
 
 import '../../../common/const/colors.dart';
 import '../../../common/const/data.dart';
@@ -68,8 +69,21 @@ class SecondHomeScreen extends StatelessWidget {
             Image.asset(ImagePath.banner),
             Padding(
               padding:
+                  const EdgeInsets.only(right: 24.0, left: 24.0, top: 40.0),
+              child: PrimaryButton(
+                onPressed: () {
+                  context.goNamed(SecondConsultingScreen.routeName);
+                },
+                child: const Text('컨설팅 페이지로 이동'),
+              ),
+            ),
+            Padding(
+              padding:
                   const EdgeInsets.symmetric(vertical: 40.0, horizontal: 24.0),
-              child: Image.asset(ImagePath.serviceImage),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(ImagePath.serviceImage),
+              ),
             ),
             _Footer(),
           ],
